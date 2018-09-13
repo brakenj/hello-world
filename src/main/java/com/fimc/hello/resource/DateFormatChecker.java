@@ -3,6 +3,7 @@ package com.fimc.hello.resource;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateFormatChecker {
@@ -10,7 +11,6 @@ public class DateFormatChecker {
     public String checkDateFormat(String date) throws ParseException {
         // mm-dd-yyyy
         String result = "";
-        System.out.println(date.length());
         if (date.length() != 10) {
             result = "invalid";
         } else {
@@ -38,6 +38,11 @@ public class DateFormatChecker {
 
             if (year.contains("-")) {
                 result = "invalid";
+            } else {
+                if (Integer.parseInt(year) > Calendar.getInstance().get(Calendar.YEAR)) {
+                    System.out.println("inputed year is greater than today year");
+                    result = "invalid";
+                }
             }
 
             if (!result.equals("invalid")) {
@@ -51,6 +56,5 @@ public class DateFormatChecker {
         return result;
 
     }
-
 
 }
