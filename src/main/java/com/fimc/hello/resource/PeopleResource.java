@@ -26,12 +26,17 @@ public class PeopleResource {
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addPerson(Person person) {
+    public Response addPerson(Person person) throws ParseException {
         HttpMessageResponse httpMessageResponse = new HttpMessageResponse();
+        DateFormatChecker dateFormatChecker = new DateFormatChecker();
         if (StringUtils.isEmpty(person.getFirstName()) || StringUtils.isEmpty(person.getLastName()) || StringUtils.isEmpty(person.getBirthDate())) {
             httpMessageResponse.setMessage("all fields required");
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST ).entity(httpMessageResponse).build();
-        }else {
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).entity(httpMessageResponse).build();
+        }else if(dateFormatChecker.checkDateFormat(person.getBirthDate()).equals("invalid")){
+            httpMessageResponse.setMessage("invalid date format");
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).entity(httpMessageResponse).build();
+        }
+        else {
             people.add(person);
             httpMessageResponse.setMessage("Successfully Add Person");
             return Response.status(HttpServletResponse.SC_CREATED ).entity(httpMessageResponse).build();

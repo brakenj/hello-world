@@ -1,0 +1,48 @@
+1. POST / calculator
+request
+{
+"operator": "+",
+"number1": 1,
+"number2": 2
+}
+
+reponse
+200 ok
+{
+"action": "addition",
+"result": 2
+}
+400 BAD REQUEST
+-- invalid operator (sign)
+-- invalid number
+-- null
+-- divide by zero
+
+2. / people
+POST 
+request
+{
+"firstname":"",
+"lastname":"",
+"birthdate":"mm-dd-yyyy"
+}
+response
+201 created
+400 bad request (all fields required)
+
+GET
+200
+ response
+
+[
+{
+"firstname":"",
+"lastname":"",
+"birthdate":"mm-dd-yyyy"
+},
+{
+"firstname":"",
+"lastname":"",
+"birthdate":"mm-dd-yyyy"
+}
+]
