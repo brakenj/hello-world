@@ -46,7 +46,7 @@ public class DateFormatChecker {
             }
 
             if (!result.equals("invalid")) {
-                date = day + "-" + month + "-" + year;
+                //date = day + "-" + month + "-" + year;
                 SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
                 Date dateFormatted = formatter.parse(date);
                 result = formatter.format(dateFormatted);
